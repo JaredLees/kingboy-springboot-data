@@ -1,4 +1,4 @@
-package com.kingboy.repository.entity;
+package com.kingboy.repository.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

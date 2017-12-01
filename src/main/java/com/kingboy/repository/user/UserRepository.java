@@ -1,6 +1,6 @@
-package com.kingboy.repository;
+package com.kingboy.repository.user;
 
-import com.kingboy.repository.entity.User;
+import com.kingboy.repository.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
