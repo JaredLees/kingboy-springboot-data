@@ -20,13 +20,21 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	maven {
+		url "http://jenkins.maxrocky.com:8080/maven/content/repositories/thirdparty"
+	}
+}
+
+ext {
+	commonVersion='1.0'
 }
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('mysql:mysql-connector-java')
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+	compile("com.kingboy:common:$commonVersion")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
-	compile project(":common")
 }
