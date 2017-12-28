@@ -23,54 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class KingboySpringbootDataApplicationTests {
 
-	@Resource
-	private WebApplicationContext wac;
-
-	private MockMvc mockMvc;
-
-	@Before
-	public void init() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
-
-	/**
-	 * 添加单个用户测试
-	 * @throws Exception
-	 */
 	@Test
-	public void saveUserWhenSuccess() throws Exception {
-		mockMvc.perform(post("/user")
-				.content("{\"id\":1,\"username\":\"king\",\"realname\":\"小金\",\"password\":\"king123\",\"age\":24,\"birth\":\"2016-12-12 11:12\"}")
-				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
-	}
+	public void loadContext(){
 
-	@Test
-	public void deleteUserWhenSuccess() throws Exception {
-		saveUserWhenSuccess();
-		mockMvc.perform(delete("/user/1")
-				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
 	}
-
-	@Test
-	public void findByNameWhenSuccess() throws Exception {
-		String contentAsString = mockMvc.perform(get("/user/username/boy")
-				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.length()").value(1))
-				.andReturn().getResponse().getContentAsString();
-		System.out.println(contentAsString);
-	}
-
-	@Test
-	public void findByAgeAndUsernameStartAndIdWhenSuccess() throws Exception {
-		String contentAsString = mockMvc.perform(get("/user/ageTo/18/name_start/ki/id/12")
-				.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.length()").value(1))
-				.andReturn().getResponse().getContentAsString();
-		System.out.println(contentAsString);
-	}
-
 }
