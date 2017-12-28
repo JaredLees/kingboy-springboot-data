@@ -27,6 +27,7 @@ repositories {
 
 ext {
 	commonVersion='1.0'
+	jnaVersion='3.0.9'
 }
 
 dependencies {
