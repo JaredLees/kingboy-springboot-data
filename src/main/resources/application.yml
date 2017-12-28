@@ -1,4 +1,9 @@
+server:
+  port: 8080
+
 spring:
+  application:
+    name: kingboy-springboot-data
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql:///jpa?useUnicode=true&characterEncoding=utf-8&useSSL=false
