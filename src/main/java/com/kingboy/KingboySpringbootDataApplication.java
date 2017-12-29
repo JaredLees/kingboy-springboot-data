@@ -9,4 +9,5 @@ public class KingboySpringbootDataApplication {
     public static void main(String[] args) {
         SpringApplication.run(KingboySpringbootDataApplication.class, args);
     }
+
 }
