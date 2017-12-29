@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.8.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -19,23 +19,23 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
-	maven {
-		url "http://jenkins.maxrocky.com:8080/maven/content/repositories/thirdparty"
-	}
+    mavenCentral()
+    maven {
+        url "http://jenkins.maxrocky.com:8080/maven/content/repositories/thirdparty"
+    }
 }
 
 ext {
-	commonVersion='1.0'
-	jnaVersion='3.0.9'
+    commonVersion = '1.0'
+    jnaVersion = '3.0.9'
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
-	compile("com.sun.jna:jna:$jnaVersion")
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-	compile("com.kingboy:common:$commonVersion")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+    compile("com.sun.jna:jna:$jnaVersion")
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    compile("com.kingboy:common:$commonVersion")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }
