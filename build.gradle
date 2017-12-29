@@ -31,11 +31,15 @@ ext {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
-    compile("com.sun.jna:jna:$jnaVersion")
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-    compile("com.kingboy:common:$commonVersion")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile(
+            'org.springframework.boot:spring-boot-starter-data-elasticsearch',
+            "com.sun.jna:jna:$jnaVersion",
+            'org.springframework.boot:spring-boot-starter-web',
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+            "com.kingboy:common:$commonVersion"
+    )
+    testCompile(
+            'org.springframework.boot:spring-boot-starter-test'
+    )
 
 }
