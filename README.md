@@ -162,7 +162,7 @@ jpa自带的这些方法肯定是不能满足我们的业务需求的，那么�
 举几个方法的栗子：
 
 |使用示例                 |说明               |
---|------------------------|---------------------------|
+|------------------------|---------------------------|
 |findByNameAndPrice(String name,Double price)      |根据用户名和价格进行查询|
 |findByNameOrPrice(String name,Double price)       |根据用户名或者价格进行查询|
 |findByName(String name)   |根据用户名进行查找|
