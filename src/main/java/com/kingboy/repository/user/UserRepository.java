@@ -1,6 +1,6 @@
 package com.kingboy.repository.user;
 
-import com.kingboy.repository.user.entity.User;
+import com.kingboy.domain.user.User;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 import java.time.LocalDateTime;

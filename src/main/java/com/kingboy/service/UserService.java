@@ -1,7 +1,7 @@
 package com.kingboy.service;
 
 import com.kingboy.repository.user.UserRepository;
-import com.kingboy.repository.user.entity.User;
+import com.kingboy.domain.user.User;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;

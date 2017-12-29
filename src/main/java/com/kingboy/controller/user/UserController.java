@@ -1,7 +1,7 @@
 package com.kingboy.controller.user;
 
 import com.kingboy.repository.user.UserRepository;
-import com.kingboy.repository.user.entity.User;
+import com.kingboy.domain.user.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
