@@ -32,6 +32,7 @@ ext {
 dependencies {
     compile(
             'org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.hibernate:hibernate-java8',
             'org.springframework.boot:spring-boot-starter-web',
             'mysql:mysql-connector-java',
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
