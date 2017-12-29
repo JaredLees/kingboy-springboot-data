@@ -1,7 +1,7 @@
 package com.kingboy.controller.user;
 
+import com.kingboy.domain.user.User;
 import com.kingboy.repository.user.UserRepository;
-import com.kingboy.repository.user.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -29,6 +29,11 @@ public class UserController {
         userRepository.delete(id);
     }
 
+    @PostMapping("/list")
+    public void saveUsers(@RequestBody List<User> users) {
+        userRepository.save(users);
+    }
+
     @GetMapping("/username/{username}")
     public List<User> getUserByUsername(@PathVariable String username) {
         return userRepository.findByUsername(username);
@@ -36,7 +41,7 @@ public class UserController {
 
     @GetMapping("/ageTo/{ageTo}/name_start/{nameStart}/id/{id:\\d+}")
     public List<User> getUserByAgeAndUsernameAndId(@PathVariable Integer ageTo, @PathVariable String nameStart,
-                                                 @PathVariable Long id) {
+                                                   @PathVariable Long id) {
         return userRepository.findByAgeBeforeAndUsernameStartingWithAndIdGreaterThanOrderByAgeDesc(ageTo, nameStart, id);
     }
 }

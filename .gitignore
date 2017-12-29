@@ -1,7 +1,7 @@
 #gralde build
 build
 gradle
-../.gradle
+.gradle
 classes
 gradlew*
 

@@ -1,17 +1,20 @@
 package com.kingboy;
 
+import com.kingboy.domain.user.User;
+import com.kingboy.repository.user.UserRepository;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -19,9 +22,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class KingboySpringbootDataApplicationTests {
+
+    @Resource
+    UserRepository userRepository;
 
     @Resource
     private WebApplicationContext wac;
@@ -34,10 +41,16 @@ public class KingboySpringbootDataApplicationTests {
     }
 
     /**
-     * 添加单个用户测试
-     *
-     * @throws Exception
+     * 测试hql和native查询
      */
+    @Test
+    public void testContainingAndLike(){
+        List<User> hql = userRepository.findByNameHQL("kingboy", new PageRequest(0, 1));
+        List<User> nati = userRepository.findByNameNative("kingboy");
+        Assert.assertEquals(1, hql.size());
+        Assert.assertEquals(1, nati.size());
+    }
+
     @Test
     public void saveUserWhenSuccess() throws Exception {
         mockMvc.perform(post("/user")
@@ -48,15 +61,22 @@ public class KingboySpringbootDataApplicationTests {
 
     @Test
     public void deleteUserWhenSuccess() throws Exception {
-        saveUserWhenSuccess();
         mockMvc.perform(delete("/user/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
+    public void saveUsersWhenSuccess() throws Exception {
+        mockMvc.perform(post("/user/list")
+                .content(getContent())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void findByNameWhenSuccess() throws Exception {
-        String contentAsString = mockMvc.perform(get("/user/username/boy")
+        String contentAsString = mockMvc.perform(get("/user/username/king")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
@@ -66,7 +86,7 @@ public class KingboySpringbootDataApplicationTests {
 
     @Test
     public void findByAgeAndUsernameStartAndIdWhenSuccess() throws Exception {
-        String contentAsString = mockMvc.perform(get("/user/ageTo/18/name_start/ki/id/12")
+        String contentAsString = mockMvc.perform(get("/user/ageTo/18/name_start/ki/id/2")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
@@ -74,4 +94,15 @@ public class KingboySpringbootDataApplicationTests {
         System.out.println(contentAsString);
     }
 
+    private String getContent() {
+        return "[" +
+                "{\"id\":10,\"username\":\"king\",\"realname\":\"小金\",\"password\":\"king123\",\"age\":24,\"birth\":\"2017-12-12 11:12\"}," +
+                "{\"id\":11,\"username\":\"boy\",\"realname\":\"小明\",\"password\":\"king123\",\"age\":56,\"birth\":\"2016-09-12 12:12\"}," +
+                "{\"id\":12,\"username\":\"kingboy\",\"realname\":\"小南\",\"password\":\"king123\",\"age\":12,\"birth\":\"1993-08-12 07:12\"}," +
+                "{\"id\":13,\"username\":\"boyking\",\"realname\":\"小孩\",\"password\":\"king123\",\"age\":11,\"birth\":\"1992-05-12 23:12\"}," +
+                "{\"id\":14,\"username\":\"kiboy\",\"realname\":\"金子\",\"password\":\"king123\",\"age\":2,\"birth\":\"2006-12-13 20:12\"}," +
+                "{\"id\":15,\"username\":\"baby\",\"realname\":\"哈喽小金\",\"password\":\"king123\",\"age\":66,\"birth\":\"2012-09-12 05:12\"}," +
+                "{\"id\":16,\"username\":\"xiaohong\",\"realname\":\"Baby\",\"password\":\"king123\",\"age\":12,\"birth\":\"2000-02-13 06:12\"}" +
+                "]";
+    }
 }
