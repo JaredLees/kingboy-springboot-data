@@ -158,4 +158,4 @@ public class RedisLockConsumerService {
 ```
 
 
-具体实例可以参考[github项目](https://github.com/KingBoyWorld/kingboy-springboot-data)，切换到feature_redis_lock分支。
+具体实例可以参考[github项目](https://github.com/KingBoyWorld/kingboy-springboot-data/tree/feature_redis_lock)。
