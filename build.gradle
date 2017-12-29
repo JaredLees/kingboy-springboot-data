@@ -33,6 +33,7 @@ dependencies {
     compile(
             "org.springframework.boot:spring-boot-starter-web",
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+            "org.springframework.boot:spring-boot-starter-data-redis",
             "com.kingboy:common:$commonVersion"
     )
     testCompile(
