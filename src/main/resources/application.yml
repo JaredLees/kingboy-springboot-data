@@ -9,6 +9,12 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql:///mybatis?characterEncoding=utf8&useSSL=false
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+#配置类驼峰属性与数据库下划线属性的自动转换
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+logging:
+  level:
+    com.kingboy.repository: debug
