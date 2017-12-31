@@ -34,7 +34,9 @@ public class UserController {
 
     /**
      * 保存单个用户
-     * @param user  {"nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"}
+     * http://localhost:8080/user
+     * {"nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"}
+     * @param user
      * @return
      */
     @PostMapping
@@ -45,12 +47,13 @@ public class UserController {
 
     /**
      * 批量保存
-     * @param users
+     * http://localhost:8080/user/list
      * [
      * {"nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"},
      * {"nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"},
      * {"nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"}
      * ]
+     * @param users
      * @return
      */
     @PostMapping(value = "/list")
@@ -61,8 +64,9 @@ public class UserController {
 
     /**
      * 更新单个用户
-     * @return
+     * http://localhost:8080/user
      * {"id":"1","nickName":"kingboy","age":"26","sex":"BOY","phoneNumber":"13132296607","birthday":"2011-12-12 12:12","status":"UNLOCK"}
+     * @return
      */
     @PutMapping
     public ApiResult update(@RequestBody User user) {
@@ -72,6 +76,7 @@ public class UserController {
 
     /**
      * 删除用户
+     * http://localhost:8080/user/1
      * @return
      */
     @DeleteMapping("/{id}")
@@ -85,6 +90,7 @@ public class UserController {
 
     /**
      * 通过ID获取用户
+     * http://localhost:8080/user/1
      * @return
      */
     @GetMapping("/{id}")
@@ -95,6 +101,7 @@ public class UserController {
 
     /**
      * 分页查询用户集合
+     * http://localhost:8080/user
      * 需要注意的是PageHelper是从1开始分页，而Hibernate/Jpa是从0开始分页的
      * @return
      */
@@ -112,6 +119,8 @@ public class UserController {
 
     /**
      * 通过id集合查询用户,这里就不做分页了。
+     * http://localhost:8080/user/ids
+     * [1,3]
      * @return
      */
     @PostMapping("/ids")
@@ -122,6 +131,11 @@ public class UserController {
 
     /**
      * 通过查询条件赖查询用户，这里也不做分页了
+     * http://localhost:8080/user/query
+     * {
+     *   "nickName":"i",
+     *   "fromBirthday":"1999-12-31 12:12",
+     * }
      * @param userQueryDTO
      * @return
      */
@@ -133,6 +147,7 @@ public class UserController {
 
     /**
      * 根据条件的顺序来查询用户
+     * http://localhost:8080/user/query?age=24
      * 演示choose标签的用法:如果传入age就按年龄查询用户，age没有传入就按照sex赖查询用户。如果两者都没有传入，那就查询所有status没有冻结的用户
      * 类似如下：
      * switch(value) {
