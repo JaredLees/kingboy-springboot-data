@@ -112,7 +112,7 @@ logging:
 
 ### 二、Mybatis注解
 
-Mybatis提供了四个注解，先简单了解一下，后面我们会编写相应的实例
+Mybatis提供了四个注解，先简单了解一下，后面的完整示例中演示了相应的实例
 
 @Insert("sql")  增
 @Delete("sql")  删
@@ -140,8 +140,12 @@ Mybatis提供了四个注解，先简单了解一下，后面我们会编写相�
 示例
 ```java
     @Insert("INSERT INTO `user` VALUES (#{id}, #{nickName}, #{phoneNumber}, #{sex}, #{age}, #{birthday}, #{status})")
+    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void saveUser(User user);
 ```
+
+> 这里补充一点，@Options注解和@Insert注解结合使用，可以将保存后的主键设置到user实体中。也就是说保存前user的id是没值的，
+保存后mybatis会自动将数据库中的主键设置到user的id属性上，keyColumn = "id"为数据库主键名，keyProperty = "id"为实体的主键属性名。
 
 
 ### 四、分页插件的使用
