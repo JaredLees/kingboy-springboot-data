@@ -97,19 +97,19 @@ public interface UserRepository {
      * @param userQueryDTO
      * @return
      */
-    @Select("<script>" +
-            "SELECT * FROM `user`" +
-            "<where>" +
-            "<bind name='nickName' value=\"'%' + nickName + '%'\" />" +
-            "<if test='nickName != null'>AND nick_name like #{nickName}</if>" +
-            "<if test='phoneNumber !=null'>AND phone_number = #{phoneNumber}</if>" +
-            "<if test='sex !=null'>AND sex = #{sex}</if>" +
-            "<if test='age !=null'>AND age = #{age}</if>" +
-            "<if test='fromBirthday !=null'>AND birthday &gt; #{fromBirthday}</if>" +
-            "<if test='toBirthday !=null'>AND birthday &lt; #{toBirthday}</if>" +
-            "<if test='status !=null'>AND status = #{status}</if>" +
-            "</where>" +
-            "</script>")
+    @Select("<script>"
+            + "SELECT * FROM `user`"
+            + "<where>"
+            + "<bind name='nickName' value=\"'%' + nickName + '%'\" />"
+            + "<if test='nickName != null'>AND nick_name like #{nickName}</if>"
+            + "<if test='phoneNumber !=null'>AND phone_number = #{phoneNumber}</if>"
+            + "<if test='sex !=null'>AND sex = #{sex}</if>"
+            + "<if test='age !=null'>AND age = #{age}</if>"
+            + "<if test='fromBirthday !=null'>AND birthday &gt; #{fromBirthday}</if>"
+            + "<if test='toBirthday !=null'>AND birthday &lt; #{toBirthday}</if>"
+            + "<if test='status !=null'>AND status = #{status}</if>"
+            + "</where>"
+            + "</script>")
     List<User> queryByCondition(UserQueryDTO userQueryDTO);
 
 
@@ -121,15 +121,15 @@ public interface UserRepository {
      * @param sex
      * @return
      */
-    @Select("<script>" +
-            "SELECT * FROM `user`" +
-            "<where>" +
-            "<choose>" +
-            "<when test='age != null'>AND age = #{age}</when>" +
-            "<when test='sex != null'>AND sex = #{sex}</when>" +
-            "<otherwise>AND status = 'UNLOCK'</otherwise>" +
-            "</choose>" +
-            "</where>" +
-            "</script>")
+    @Select("<script>"
+            + "SELECT * FROM `user`"
+            + "<where>"
+            + "<choose>"
+            + "<when test='age != null'>AND age = #{age}</when>"
+            + "<when test='sex != null'>AND sex = #{sex}</when>"
+            + "<otherwise>AND status = 'UNLOCK'</otherwise>"
+            + "</choose>"
+            + "</where>"
+            + "</script>")
     List<User> getByOrderCondition(@Param("age") Integer age, @Param("sex") Sex sex);
 }
