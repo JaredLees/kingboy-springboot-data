@@ -1,11 +1,14 @@
 package com.kingboy.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kingboy.domain.address.Address;
+import com.kingboy.domain.car.Car;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author kingboy--KingBoyWorld@163.com
@@ -19,17 +22,12 @@ public class User {
 
     private Long id;
 
-    private String nickName;
+    //地址信息，和用户是一对一的关系
+    private Address address;
 
-    private String phoneNumber;
+    private Long addressId;
 
-    private Sex sex;
-
-    private Integer age;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime birthday;
-
-    private Status status;
+    //用户拥有的车，和用户是一对多的关系
+    private List<Car> cars;
 
 }
