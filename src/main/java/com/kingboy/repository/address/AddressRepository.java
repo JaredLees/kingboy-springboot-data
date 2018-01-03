@@ -1,5 +1,6 @@
 package com.kingboy.repository.address;
 
+import com.kingboy.domain.address.Address;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -15,6 +16,6 @@ public interface AddressRepository {
      * @return
      */
     @Select("SELECT * FROM `address` WHERE id = #{id}")
-    com.kingboy.domain.address.Address findAddressById(Long id);
+    Address findAddressById(Long id);
 
 }
