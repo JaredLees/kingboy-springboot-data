@@ -4,3 +4,11 @@ server:
 spring:
   application:
     name: kingboy-springboot-data
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///jpa?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
