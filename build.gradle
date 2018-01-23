@@ -19,9 +19,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
     maven {
-        url "http://jenkins.maxrocky.com:8080/maven/content/repositories/thirdparty"
+        url "http://123.56.252.81:8081/repository/maven-public/"
     }
 }
 
