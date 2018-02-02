@@ -19,21 +19,17 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    maven {
-        url "http://123.56.252.81:8081/repository/maven-public/"
-    }
-}
-
-ext {
-    commonVersion = '1.0'
+    mavenCentral()
 }
 
 dependencies {
     compile(
             "org.springframework.boot:spring-boot-starter-web",
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
-            "org.springframework.boot:spring-boot-starter-data-redis",
-            "com.kingboy:common:$commonVersion"
+            "org.springframework.boot:spring-boot-starter-data-redis"
+    )
+    compile project(
+            ":common"
     )
     testCompile(
             'org.springframework.boot:spring-boot-starter-test'
