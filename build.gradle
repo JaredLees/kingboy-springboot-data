@@ -19,13 +19,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    maven {
-        url "http://123.56.252.81:8081/repository/maven-public/"
-    }
-}
-
-ext {
-    commonVersion = '1.0'
+    mavenCentral()
 }
 
 dependencies {
@@ -35,7 +29,9 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'mysql:mysql-connector-java',
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
-            "com.kingboy:common:$commonVersion"
+    )
+    compile project(
+            ":common"
     )
     testCompile(
             'org.springframework.boot:spring-boot-starter-test'
