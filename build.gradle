@@ -19,13 +19,10 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    maven {
-        url "http://123.56.252.81:8081/repository/maven-public/"
-    }
+    mavenCentral()
 }
 
 ext {
-    commonVersion = '1.0'
     pageVersion = '4.1.0'
     mybatisVersion = '1.3.1'
     jsrVersion = '2.9.3'
@@ -35,11 +32,13 @@ ext {
 dependencies {
     compile(
             'org.springframework.boot:spring-boot-starter-web',
-            "com.kingboy:common:$commonVersion",
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jsrVersion",
             "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion",
             "com.github.pagehelper:pagehelper:$pageVersion",
             'mysql:mysql-connector-java'
+    )
+    compile project(
+            ":common"
     )
     testCompile(
             'org.springframework.boot:spring-boot-starter-test'
